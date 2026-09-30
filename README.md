@@ -30,10 +30,19 @@ The model that produced the explanation is shown on the first line.
 
 No other dependency: it reads the event facts directly and does not import the permission package.
 
+## Compatibility
+
+Compatibility is defined by the event contract, not by the dialog: this extension works with any permission package that emits the `permissions:ui_prompt` and `permissions:decision` events with the same payload shape.
+
+- **Works:** [`@gotgenes/pi-permission-system`](https://github.com/gotgenes/pi-packages/tree/main/packages/pi-permission-system), and faithful forks of it. Verified against [`@xzzpig/pi-permission-system`](https://www.npmjs.com/package/@xzzpig/pi-permission-system) (a fork of v35.0.0), whose payload is identical.
+- **Does not work:** permission addons with their own mechanism. With these, the extension loads and stays inert — no hint, no key, no model call. Examples: [`pi-permission-system` by MasuRII](https://www.npmjs.com/package/pi-permission-system) (emits its own `pi-permission-system:permission-request` channel) and [`pi-verdict`](https://www.npmjs.com/package/pi-verdict) (no cross-extension events; it decides and prompts internally).
+
+A fork works because it shares the contract, not by design, so a future fork release could diverge. Install only one permission system at a time.
+
 ## Install
 
 ```bash
-pi install npm:pi-permission-explain      # once published to npm
+pi install npm:pi-permission-explain
 # or, from a local checkout:
 pi install /path/to/pi-permission-explain
 ```

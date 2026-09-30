@@ -1,6 +1,6 @@
 {
   "name": "pi-permission-explain",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "On-demand plain-English explanations for pi-permission-system prompts",
   "type": "module",
   "keywords": [
